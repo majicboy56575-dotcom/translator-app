@@ -60,13 +60,13 @@ export default function OnboardingScreen() {
               <div className="bg-white/70 backdrop-blur-md p-lg rounded-[2.5rem] shadow-sm border border-white/50 flex flex-col items-center gap-md">
                 <div className="flex items-center gap-sm">
                   <button className="px-md py-sm bg-surface-container-high rounded-full border border-outline-variant hover:opacity-80 active:scale-95 transition-all cursor-pointer">
-                    <span className="font-label-md text-label-md text-on-surface-variant">English</span>
+                    <span className="font-label-md text-label-md text-on-surface-variant">한국어</span>
                   </button>
                   <button className="hover:opacity-80 active:scale-90 transition-all cursor-pointer flex items-center">
                     <span className="material-symbols-outlined text-primary">swap_horiz</span>
                   </button>
                   <button className="px-md py-sm bg-primary-container rounded-full shadow-sm hover:opacity-80 active:scale-95 transition-all cursor-pointer">
-                    <span className="font-label-md text-label-md text-on-primary">Spanish</span>
+                    <span className="font-label-md text-label-md text-on-primary">태국어</span>
                   </button>
                 </div>
                 <div className="relative w-full aspect-video rounded-xl overflow-hidden shadow-xl">
