@@ -1,0 +1,229 @@
+<!DOCTYPE html><html class="light" lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport">
+<title>LingoLens - Onboarding</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Google Fonts: Hanken Grotesk & Inter -->
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+                "surface-container-highest": "#d9e3f6",
+                "surface-tint": "#ba0060",
+                "tertiary-fixed": "#ffd9e0",
+                "on-tertiary-fixed": "#3f0019",
+                "secondary-container": "#e7dde3",
+                "surface-container": "#e6eeff",
+                "inverse-primary": "#ffb1c7",
+                "on-error-container": "#93000a",
+                "primary-fixed": "#ffd9e2",
+                "on-secondary-fixed-variant": "#4b454a",
+                "surface-dim": "#d0dbed",
+                "background": "#f8f9ff",
+                "tertiary-container": "#cd4070",
+                "surface-container-lowest": "#ffffff",
+                "surface": "#f8f9ff",
+                "primary-container": "#db2777",
+                "secondary": "#635c61",
+                "on-primary-fixed-variant": "#8e0048",
+                "on-secondary": "#ffffff",
+                "on-error": "#ffffff",
+                "outline-variant": "#e1bec6",
+                "tertiary": "#ac2558",
+                "surface-bright": "#f8f9ff",
+                "on-primary-container": "#fffdff",
+                "on-background": "#121c2a",
+                "outline": "#8d6f77",
+                "on-tertiary-container": "#fffdff",
+                "primary": "#b7005e",
+                "error": "#ba1a1a",
+                "surface-variant": "#d9e3f6",
+                "surface-container-high": "#dee9fc",
+                "error-container": "#ffdad6",
+                "on-tertiary-fixed-variant": "#8e0542",
+                "on-surface": "#121c2a",
+                "on-primary-fixed": "#3f001c",
+                "on-tertiary": "#ffffff",
+                "tertiary-fixed-dim": "#ffb1c3",
+                "inverse-surface": "#27313f",
+                "on-primary": "#ffffff",
+                "inverse-on-surface": "#eaf1ff",
+                "on-surface-variant": "#594047",
+                "secondary-fixed-dim": "#cec4ca",
+                "surface-container-low": "#eff4ff",
+                "on-secondary-fixed": "#1f1a1e",
+                "primary-fixed-dim": "#ffb1c7",
+                "secondary-fixed": "#eae0e6",
+                "on-secondary-container": "#686066"
+        },
+        "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+        },
+        "spacing": {
+                "margin-mobile": "20px",
+                "margin-desktop": "64px",
+                "margin-tablet": "32px",
+                "base": "8px",
+                "gutter": "24px",
+                "container-max": "1280px",
+                "xl": "32px",
+                "md": "16px",
+                "lg": "24px",
+                "sm": "8px",
+                "xs": "4px"
+        },
+        "fontFamily": {
+                "headline-lg": ["Hanken Grotesk"],
+                "label-sm": ["Inter"],
+                "body-sm": ["Inter"],
+                "headline-sm": ["Hanken Grotesk"],
+                "headline-md": ["Hanken Grotesk"],
+                "body-lg": ["Inter"],
+                "body-md": ["Inter"],
+                "label-md": ["Inter"],
+                "headline-lg-mobile": ["Hanken Grotesk"],
+                "display-lg-mobile": ["Hanken Grotesk"]
+        },
+        "fontSize": {
+                "headline-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                "label-sm": ["12px", { "lineHeight": "14px", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                "headline-sm": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                "headline-md": ["32px", { "lineHeight": "40px", "fontWeight": "600" }],
+                "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                "label-md": ["14px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                "headline-lg-mobile": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                "display-lg-mobile": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700" }]
+        }
+      },
+    },
+  }
+</script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .onboarding-gradient {
+            background: radial-gradient(circle at 50% -20%, #ffd9e2 0%, #f8f9ff 50%);
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        .animate-float {
+            animation: float 4s ease-in-out infinite;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(8px);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface font-body-md overflow-hidden onboarding-gradient">
+<!-- Header / Brand -->
+<header class="w-full flex items-center justify-center pt-12 pb-6 px-margin-mobile">
+<div class="flex items-center gap-2">
+<div class="w-10 h-10 rounded-xl bg-primary flex items-center justify-center text-on-primary shadow-sm">
+<span class="material-symbols-outlined text-[24px]" data-icon="auto_awesome">auto_awesome</span>
+</div>
+<h1 class="font-headline-sm text-headline-sm font-bold text-primary tracking-tight">LingoLens</h1>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-1 flex flex-col items-center justify-between min-h-[calc(100vh-140px)] px-margin-mobile" style="opacity: 1; transform: translateY(0px); transition: 0.8s cubic-bezier(0.16, 1, 0.3, 1);">
+<!-- Illustration Section -->
+<div class="flex-1 flex items-center justify-center w-full max-w-md">
+<div class="relative w-full aspect-square flex items-center justify-center">
+<!-- Decorative Shapes -->
+<div class="absolute w-64 h-64 bg-secondary-container/40 rounded-full blur-3xl"></div>
+<div class="absolute w-48 h-48 bg-primary-fixed/30 rounded-full blur-2xl -top-4 -left-4"></div>
+<!-- Translation Visual -->
+<div class="relative z-10 animate-float flex items-center justify-center" style="transform: translate(-2.925px, -10.55px);">
+<div class="glass-panel p-lg rounded-[2.5rem] shadow-sm border border-white/50 flex flex-col items-center gap-md">
+<div class="flex items-center gap-sm">
+<div class="px-md py-sm bg-surface-container-high rounded-full border border-outline-variant">
+<span class="font-label-md text-label-md text-on-surface-variant">English</span>
+</div>
+<span class="material-symbols-outlined text-primary" data-icon="swap_horiz">swap_horiz</span>
+<div class="px-md py-sm bg-primary-container rounded-full shadow-sm">
+<span class="font-label-md text-label-md text-on-primary">Spanish</span>
+</div>
+</div>
+<div class="relative w-full aspect-video rounded-xl overflow-hidden shadow-xl">
+<img alt="Translation View" class="w-full h-full object-cover grayscale-[0.2]" data-alt="A detailed close-up shot of a smartphone camera lens overlaying a live translation interface on a street sign in a vibrant foreign city. The interface displays glowing, crisp text boxes translating architectural information from Japanese to English. The lighting is bright and airy, reflecting a clean, modern aesthetic with soft bokeh in the background. The color palette features sharp primary blues and pristine whites to evoke professional linguistic precision." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD9Sxi8B8kfdQv1U3I6Nb-JEQz-ybZXzJiiAViFJSmlyGVlRyiG5y9fG4svkLfq8zc85411OE1-BuuQluRY84zl2ny6MYMWjDc47wYMA37CMVVjx8gS_1QMXLl1tjhMD-STTbZQLieb0OJgjsU9VPRFHFpaf1Zyq2prh71HzVYW1g02ooZgjIF5VgQ03BLwViWiGugjnTkjuavSsqJHy4N8N4149G8yocUd9GNhXZzvGaLwSvihPbUIQJBX-rnOpFze1nqzUONJwLY">
+<div class="absolute inset-0 bg-primary/10 border-2 border-primary/40 rounded-xl"></div>
+<div class="absolute top-2 left-2 px-2 py-1 bg-primary text-on-primary rounded text-[10px] font-bold uppercase tracking-widest">Live</div>
+</div>
+<div class="flex flex-col items-center text-center gap-xs">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest">Detecting Text...</span>
+<div class="h-1 w-24 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-primary w-1/2 rounded-full"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Typography Section -->
+<div class="w-full max-w-sm flex flex-col items-center text-center pb-xl">
+<h2 class="font-display-lg-mobile text-display-lg-mobile text-on-surface mb-md">Unlock the World with 하연이의 번역</h2>
+<p class="font-body-md text-body-md text-on-surface-variant px-md">
+                Instantly translate text through your camera lens
+            </p>
+</div>
+<!-- Action Section -->
+<div class="w-full max-w-sm pb-12">
+<button class="w-full h-[56px] bg-primary text-on-primary font-label-md text-label-md rounded-full shadow-md active:bg-on-primary-fixed-variant transition-all duration-200 flex items-center justify-center gap-sm group" onclick="this.classList.add('scale-95'); setTimeout(() =&gt; { window.location.href = '#next' }, 150)">하연이에게 알려주세요
+                <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform" data-icon="arrow_forward">arrow_forward</span></button>
+<div class="mt-lg flex justify-center gap-base">
+<div class="w-8 h-1.5 rounded-full bg-primary"></div>
+<div class="w-1.5 h-1.5 rounded-full bg-surface-container-highest"></div>
+<div class="w-1.5 h-1.5 rounded-full bg-surface-container-highest"></div>
+</div>
+</div>
+</main>
+<!-- Micro-interaction logic -->
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const button = document.querySelector('button');
+            
+            // Add a subtle parallax effect on mouse/tilt
+            document.addEventListener('mousemove', (e) => {
+                const x = (window.innerWidth / 2 - e.pageX) / 40;
+                const y = (window.innerHeight / 2 - e.pageY) / 40;
+                const illustration = document.querySelector('.animate-float');
+                if(illustration) {
+                    illustration.style.transform = `translate(${x}px, ${y}px)`;
+                }
+            });
+
+            // Smooth reveal animation
+            const mainContent = document.querySelector('main');
+            mainContent.style.opacity = '0';
+            mainContent.style.transform = 'translateY(20px)';
+            
+            setTimeout(() => {
+                mainContent.style.transition = 'all 0.8s cubic-bezier(0.16, 1, 0.3, 1)';
+                mainContent.style.opacity = '1';
+                mainContent.style.transform = 'translateY(0)';
+            }, 100);
+        });
+    </script>
+
+
+</body></html>

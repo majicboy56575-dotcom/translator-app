@@ -1,0 +1,318 @@
+<!DOCTYPE html><html class="light" lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport">
+<title>LingoLens - Translation History</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&amp;family=Inter:wght@400;500;600;700&amp;family=Geist:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-highest": "#d9e3f6",
+                    "surface-tint": "#ba0060",
+                    "tertiary-fixed": "#ffd9e0",
+                    "on-tertiary-fixed": "#3f0019",
+                    "secondary-container": "#e7dde3",
+                    "surface-container": "#e6eeff",
+                    "inverse-primary": "#ffb1c7",
+                    "on-error-container": "#93000a",
+                    "primary-fixed": "#ffd9e2",
+                    "on-secondary-fixed-variant": "#4b454a",
+                    "surface-dim": "#d0dbed",
+                    "background": "#f8f9ff",
+                    "tertiary-container": "#cd4070",
+                    "surface-container-lowest": "#ffffff",
+                    "surface": "#f8f9ff",
+                    "primary-container": "#db2777",
+                    "secondary": "#635c61",
+                    "on-primary-fixed-variant": "#8e0048",
+                    "on-secondary": "#ffffff",
+                    "on-error": "#ffffff",
+                    "outline-variant": "#e1bec6",
+                    "tertiary": "#ac2558",
+                    "surface-bright": "#f8f9ff",
+                    "on-primary-container": "#fffdff",
+                    "on-background": "#121c2a",
+                    "outline": "#8d6f77",
+                    "on-tertiary-container": "#fffdff",
+                    "primary": "#b7005e",
+                    "error": "#ba1a1a",
+                    "surface-variant": "#d9e3f6",
+                    "surface-container-high": "#dee9fc",
+                    "error-container": "#ffdad6",
+                    "on-tertiary-fixed-variant": "#8e0542",
+                    "on-surface": "#121c2a",
+                    "on-primary-fixed": "#3f001c",
+                    "on-tertiary": "#ffffff",
+                    "tertiary-fixed-dim": "#ffb1c3",
+                    "inverse-surface": "#27313f",
+                    "on-primary": "#ffffff",
+                    "inverse-on-surface": "#eaf1ff",
+                    "on-surface-variant": "#594047",
+                    "secondary-fixed-dim": "#cec4ca",
+                    "surface-container-low": "#eff4ff",
+                    "on-secondary-fixed": "#1f1a1e",
+                    "primary-fixed-dim": "#ffb1c7",
+                    "secondary-fixed": "#eae0e6",
+                    "on-secondary-container": "#686066"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-mobile": "16px",
+                    "margin-desktop": "64px",
+                    "margin-tablet": "32px",
+                    "base": "8px",
+                    "gutter": "24px",
+                    "container-max": "1280px"
+            },
+            "fontFamily": {
+                    "headline-lg": ["Hanken Grotesk"],
+                    "label-sm": ["Geist"],
+                    "body-sm": ["Inter"],
+                    "headline-sm": ["Hanken Grotesk"],
+                    "headline-md": ["Hanken Grotesk"],
+                    "body-lg": ["Inter"],
+                    "body-md": ["Inter"],
+                    "label-md": ["Geist"],
+                    "headline-lg-mobile": ["Hanken Grotesk"]
+            },
+            "fontSize": {
+                    "headline-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-sm": ["12px", {"lineHeight": "14px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-sm": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "headline-md": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "headline-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #f8f9ff;
+            font-family: 'Inter', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .history-card-shadow {
+            box-shadow: 0px 2px 4px rgba(18, 28, 42, 0.05);
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Hanken Grotesk', sans-serif;
+        }
+    </style>
+<style>
+        body {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col">
+<!-- TopAppBar -->
+<header class="w-full top-0 sticky z-40 bg-surface-container-lowest border-b border-outline-variant flex items-center justify-between px-margin-mobile h-14">
+<div class="flex items-center gap-4">
+<button class="active:scale-95 transition-transform hover:opacity-80 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" data-icon="menu">menu</span>
+</button>
+<h1 class="font-headline-sm text-headline-sm font-bold text-primary">하연이의 번역</h1>
+</div>
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-full bg-secondary-container flex items-center justify-center overflow-hidden active:scale-95 transition-transform ring-2 ring-primary/10">
+<img alt="Profile" class="w-full h-full object-cover" data-alt="A clean, professional headshot of a person with a friendly expression, set against a soft-focus studio background. The lighting is bright and modern, consistent with a high-end app user profile." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAROMmFs0wcT2NlUsdg4fZwsmERIuZRgbz6opcsw9RF9a8p-kj1LabVUbihW_H5nqHRxBnOFRMCOUhWEuxZXjVisWlycqroSQO7F3umSJ3bt8jkJW4D_WzGZlVBIz3evf8DmpMBOxyWUVTiYqCaCnQBxo3yUlQejFglQNQVwPNwzMj1kt-foJE9WtJTjCuCC0YcBNHzL9m57NRdUgRc7ThF4WQRA6TGk4gEV-o3DqqkOUkK6n9qt7tmmVgp_2b5jHznmsxqwB92WMc">
+</div>
+</div>
+</header>
+<main class="flex-1 px-margin-mobile pt-base pb-32">
+<!-- Search & Filter Area -->
+<section class="flex flex-col gap-base mb-gutter mt-4">
+<div class="relative w-full">
+<div class="absolute inset-y-0 left-4 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-outline" data-icon="search">search</span>
+</div>
+<input class="w-full h-12 pl-12 pr-4 rounded-xl bg-surface-container border border-outline-variant/30 history-card-shadow font-body-md text-on-surface focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none" placeholder="Search translations..." type="text">
+</div>
+<div class="flex gap-base overflow-x-auto hide-scrollbar pt-2">
+<button class="flex items-center gap-1 px-5 py-2 bg-primary text-on-primary rounded-full font-label-md transition-all active:scale-95 whitespace-nowrap">
+                    Recent
+                </button>
+<button class="flex items-center gap-1 px-5 py-2 bg-surface-container-high text-on-surface-variant rounded-full font-label-md hover:bg-surface-container-highest transition-all active:scale-95 whitespace-nowrap">
+<span class="material-symbols-outlined text-[18px]" data-icon="star">star</span>
+                    Starred
+                </button>
+<button class="flex items-center gap-1 px-5 py-2 bg-surface-container-high text-on-surface-variant rounded-full font-label-md hover:bg-surface-container-highest transition-all active:scale-95 whitespace-nowrap">
+                    Italian
+                </button>
+<button class="flex items-center gap-1 px-5 py-2 bg-surface-container-high text-on-surface-variant rounded-full font-label-md hover:bg-surface-container-highest transition-all active:scale-95 whitespace-nowrap">
+                    French
+                </button>
+</div>
+</section>
+<!-- History List -->
+<section class="flex flex-col gap-base">
+<!-- History Item 1 -->
+<div class="bg-surface-container-lowest p-base rounded-xl border border-outline-variant/20 history-card-shadow flex gap-base items-center active:scale-[0.98] transition-transform cursor-pointer">
+<div class="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0">
+<img alt="History Entry 1" class="w-full h-full object-cover" data-alt="Vintage Italian menu" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-CJTuZPoXa87NIDOPBzG7P0ldzx_z-1f2cehlXFYfC-83kIV5AuIPMrkqrhG7SpzMneMVeIUGjyKUTEEP57J-2hjFrLxCvk77LZrfpjLzAE4rqJvvYNq-pm81I15MZiNR4qgTjlgUzBh7m7sE7FsDP1AzwIqoYMsOwVDUZYR_GOOmPor_OP4orBrL5Ug2GJfa5L2fqqF2ZXY0zrevTjMNbytKFB8cDA2d2feQj2tzySuXT0ecLjILffchSR_Sr5qXXg5xNq6gLR0">
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-start mb-1">
+<span class="font-label-sm text-primary uppercase tracking-wider text-[10px]">Italian → English</span>
+<span class="font-label-sm text-outline">Oct 24</span>
+</div>
+<h3 class="font-label-md text-on-surface truncate mb-1">Traditional Carbonara Ingredients</h3>
+<p class="font-body-sm text-on-surface-variant truncate">Guanciale, pecorino romano, egg yolks...</p>
+</div>
+<button class="p-2 text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+</button>
+</div>
+<!-- History Item 2 -->
+<div class="bg-surface-container-lowest p-base rounded-xl border border-outline-variant/20 history-card-shadow flex gap-base items-center active:scale-[0.98] transition-transform cursor-pointer">
+<div class="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0">
+<img alt="History Entry 2" class="w-full h-full object-cover" data-alt="French train station sign" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC8z3DPDXnhX1yzrs2T7aYejMU-_fwStj0WuUFpUXnoJ80ZqFG54JXnIqjWbE35TIrSvDFQxP8vk_4hOZftsB20Av87tpDvLtjWfxkcMqDQyyI_TDwYqfPzGCvH3LSjseXov2Njou1kByBEbQwzR2XdVp8lxEmfUf1hBdEZdA2O0wTc590Rrm_SpI4J3FzI_qorkNuy_NXTp1_ggd21RyaY7c7CPclnEJw4GT3574KVMODy6Csu8fMYjz8xFbrvGEIIrgsgDbulLZQ">
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-start mb-1">
+<span class="font-label-sm text-primary uppercase tracking-wider text-[10px]">French → English</span>
+<span class="font-label-sm text-outline">Oct 23</span>
+</div>
+<h3 class="font-label-md text-on-surface truncate mb-1">Platform 9 Change Notice</h3>
+<p class="font-body-sm text-on-surface-variant truncate">Passengers for Lyon please proceed to...</p>
+</div>
+<button class="p-2 text-outline-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="star" style="font-variation-settings: 'FILL' 0;">star</span>
+</button>
+</div>
+<!-- History Item 3 -->
+<div class="bg-surface-container-lowest p-base rounded-xl border border-outline-variant/20 history-card-shadow flex gap-base items-center active:scale-[0.98] transition-transform cursor-pointer">
+<div class="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0">
+<img alt="History Entry 3" class="w-full h-full object-cover" data-alt="Tokyo shop window" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPt9F1xKVA-QouoqNXmB1r8B0cawSdsnj-pOTPo2zYkFESYSt1RkcpahEn92jJdOI1sURpVTxG-AFkAXVDcqYlxSI-6vVZjM8Ji8BS2WIoERQOvoOkQ47rHLtZ3zrQu5mwtkoQXOilm04hxAfpnqDN4GmNQjUZT9P7JsK-1s4jQuQlZLsAqSF3UhT2zjk46GQ_B0NPlNjKfVU7MsDarkT-nX8SkfgvZ7T-Q578aiMn4_rvJsPcdloV7r2OmCgo-JDFPqz7DXSZ0LY">
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-start mb-1">
+<span class="font-label-sm text-primary uppercase tracking-wider text-[10px]">Japanese → English</span>
+<span class="font-label-sm text-outline">Oct 21</span>
+</div>
+<h3 class="font-label-md text-on-surface truncate mb-1">Limited Edition Souvenir Label</h3>
+<p class="font-body-sm text-on-surface-variant truncate">This product contains authentic green tea...</p>
+</div>
+<button class="p-2 text-outline-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="star" style="font-variation-settings: 'FILL' 0;">star</span>
+</button>
+</div>
+<!-- History Item 4 -->
+<div class="bg-surface-container-lowest p-base rounded-xl border border-outline-variant/20 history-card-shadow flex gap-base items-center active:scale-[0.98] transition-transform cursor-pointer">
+<div class="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0">
+<img alt="History Entry 4" class="w-full h-full object-cover" data-alt="Circuit diagram" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBfgEnXDZW6js3yajgD4TxlSCIPs-_QdZjpZBWt-4X07bwxqwbVHDV42RlBA5N-S297ms07h2Yqw0FP9TuRZWiRyhW9rKL4MTqyhimyKN4S9k5JVvas1KP8jKaOH0u1sH8iEL0o8sbiosgc_EaetBfd_r1svoEMn3Ju9vK5Z2zRPcAhCRV8t5ndVebWuGu2nuXTFoNZkD64IQFmaDxqQcdaR_ZBo8GLP-NstVK832MZ58c2gjAeZXSV1XxsdusQglY2QIJjogR0TNs">
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-start mb-1">
+<span class="font-label-sm text-primary uppercase tracking-wider text-[10px]">German → English</span>
+<span class="font-label-sm text-outline">Oct 20</span>
+</div>
+<h3 class="font-label-md text-on-surface truncate mb-1">Safety Installation Protocol</h3>
+<p class="font-body-sm text-on-surface-variant truncate">Ensure the primary circuit breaker is...</p>
+</div>
+<button class="p-2 text-outline-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="star" style="font-variation-settings: 'FILL' 0;">star</span>
+</button>
+</div>
+<!-- History Item 5 -->
+<div class="bg-surface-container-lowest p-base rounded-xl border border-outline-variant/20 history-card-shadow flex gap-base items-center active:scale-[0.98] transition-transform cursor-pointer">
+<div class="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0">
+<img alt="History Entry 5" class="w-full h-full object-cover" data-alt="Spanish museum plaque" src="https://lh3.googleusercontent.com/aida-public/AB6AXuClxiYzs3FKbS9TXJ2fK11vW5hasC99UAqyf3C8u6lGuZqUufXQzjThg8PhnstxPvEzRvTG2lMyRi906ta8XAQ4G9E0TzWZypm3e-J58I97RGt2ykvbmiP-f68xf_sVzO0JVUirEtCKSHHy_mDydaLVRwGXVC97vr8lHCMrfCMmV5SsRQdytJBj21VpWpDXhQkOGZGGL7nq5S6LEqhYrzEsHl_hWRpR2y2GlbW1ncHF6JriPQ22Z2pR9pRdj_vGZJ-qFYhx8PwcoU4">
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-start mb-1">
+<span class="font-label-sm text-primary uppercase tracking-wider text-[10px]">Spanish → English</span>
+<span class="font-label-sm text-outline">Oct 18</span>
+</div>
+<h3 class="font-label-md text-on-surface truncate mb-1">Modern Art Exhibition Intro</h3>
+<p class="font-body-sm text-on-surface-variant truncate">This gallery features local artists from...</p>
+</div>
+<button class="p-2 text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+</button>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-2 pt-3 pb-safe bg-surface-container-lowest border-t border-outline-variant">
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:text-primary active:scale-90 transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-[24px]" data-icon="translate">translate</span>
+<span class="font-label-sm text-[11px] mt-1">Translate</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:text-primary active:scale-90 transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-[24px]" data-icon="photo_camera">photo_camera</span>
+<span class="font-label-sm text-[11px] mt-1">Camera</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary/10 text-primary rounded-full px-5 py-1 active:scale-90 transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-[24px]" data-icon="history" style="font-variation-settings: &quot;wght&quot; 600;">history</span>
+<span class="font-label-sm text-[11px] mt-1 font-bold">History</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:text-primary active:scale-90 transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-[24px]" data-icon="settings">settings</span>
+<span class="font-label-sm text-[11px] mt-1">Settings</span>
+</a>
+</nav>
+<script>
+        // Micro-interactions for stars
+        document.querySelectorAll('button span[data-icon="star"]').forEach(starIcon => {
+            const btn = starIcon.parentElement;
+            if (!btn.closest('section').classList.contains('flex-col')) return; // Only for list items
+
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const isFilled = starIcon.style.fontVariationSettings.includes("'FILL' 1");
+                
+                if (isFilled) {
+                    starIcon.style.fontVariationSettings = "'FILL' 0";
+                    btn.classList.remove('text-primary');
+                    btn.classList.add('text-outline-variant');
+                } else {
+                    starIcon.style.fontVariationSettings = "'FILL' 1";
+                    btn.classList.remove('text-outline-variant');
+                    btn.classList.add('text-primary');
+                }
+            });
+        });
+
+        // Filter button toggle logic
+        const filterButtons = document.querySelectorAll('button.font-label-md');
+        filterButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterButtons.forEach(b => {
+                    b.classList.remove('bg-primary', 'text-on-primary');
+                    b.classList.add('bg-surface-container-high', 'text-on-surface-variant');
+                });
+                btn.classList.add('bg-primary', 'text-on-primary');
+                btn.classList.remove('bg-surface-container-high', 'text-on-surface-variant');
+            });
+        });
+    </script>
+
+
+
+
+</body></html>
