@@ -81,8 +81,8 @@ export default function ResultScreen() {
 
   // State from navigation
   const imageData = location.state?.imageData;
-  const sourceLang = location.state?.sourceLang || '영어';
-  const targetLang = location.state?.targetLang || '한국어';
+  const sourceLang = location.state?.sourceLang || '한국어';
+  const targetLang = location.state?.targetLang || '태국어';
 
   // API & Translation state
   const [apiKey, setApiKey] = useState(() => import.meta.env.VITE_GEMINI_API_KEY || '');

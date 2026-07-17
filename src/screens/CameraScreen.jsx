@@ -8,8 +8,8 @@ export default function CameraScreen() {
 
   const [flashOn, setFlashOn] = useState(false);
   const [flashOverlay, setFlashOverlay] = useState(false);
-  const [sourceLang, setSourceLang] = useState('영어');
-  const [targetLang, setTargetLang] = useState('한국어');
+  const [sourceLang, setSourceLang] = useState('한국어');
+  const [targetLang, setTargetLang] = useState('태국어');
   const [activeSelector, setActiveSelector] = useState(null); // 'source' | 'target' | null
   const [cameraReady, setCameraReady] = useState(false);
   const [cameraError, setCameraError] = useState(null);
