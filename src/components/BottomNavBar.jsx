@@ -6,10 +6,9 @@ export default function BottomNavBar() {
   const location = useLocation();
 
   const navItems = [
-    { id: 'onboarding', icon: 'translate', label: 'Translate', path: '/' },
-    { id: 'camera', icon: 'photo_camera', label: 'Camera', path: '/camera', fill: true },
-    { id: 'history', icon: 'history', label: 'History', path: '/history' },
-    { id: 'result', icon: 'settings', label: 'Settings', path: '/result' }, // Just mapping to result for now
+    { id: 'onboarding', icon: 'translate', label: 'แปล', path: '/' },
+    { id: 'camera', icon: 'photo_camera', label: 'กล้อง', path: '/camera', fill: true },
+    { id: 'result', icon: 'settings', label: 'ตั้งค่า', path: '/result' }, // Just mapping to result for now
   ];
 
   return (

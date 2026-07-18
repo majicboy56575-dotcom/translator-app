@@ -4,12 +4,12 @@ import BottomNavBar from '../components/BottomNavBar';
 import { useNavigate } from 'react-router-dom';
 
 export default function CameraScreen() {
-  const AVAILABLE_LANGUAGES = ['한국어', '태국어', '영어', '중국어', '베트남어', '라오스어', '러시아어'];
+  const AVAILABLE_LANGUAGES = ['เกาหลี', 'ไทย', 'อังกฤษ', 'จีน', 'เวียดนาม', 'ลาว', 'รัสเซีย'];
 
   const [flashOn, setFlashOn] = useState(false);
   const [flashOverlay, setFlashOverlay] = useState(false);
-  const [sourceLang, setSourceLang] = useState('한국어');
-  const [targetLang, setTargetLang] = useState('태국어');
+  const [sourceLang, setSourceLang] = useState('เกาหลี');
+  const [targetLang, setTargetLang] = useState('ไทย');
   const [activeSelector, setActiveSelector] = useState(null); // 'source' | 'target' | null
   const [cameraReady, setCameraReady] = useState(false);
   const [cameraError, setCameraError] = useState(null);
@@ -163,7 +163,7 @@ export default function CameraScreen() {
               />
               {cameraError && (
                 <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-error-container text-on-error-container px-4 py-2 rounded-full font-label-sm text-label-sm z-30 whitespace-nowrap">
-                  Camera unavailable — use gallery instead
+                  กล้องไม่พร้อมใช้งาน — โปรดใช้แกลเลอรีแทน
                 </div>
               )}
             </>
@@ -180,7 +180,7 @@ export default function CameraScreen() {
           <div className="scan-line absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary to-transparent shadow-[0_0_15px_#db2777] opacity-80"></div>
           
           <div className="absolute top-4 bg-black/40 backdrop-blur-sm text-white px-4 py-1.5 rounded-full font-label-sm text-label-sm">
-            Align text within frame
+            จัดตำแหน่งข้อความให้อยู่ในกรอบ
           </div>
         </div>
 
@@ -252,7 +252,7 @@ export default function CameraScreen() {
           <div className="fixed bottom-0 left-0 w-full bg-surface z-[120] rounded-t-2xl shadow-2xl animate-in slide-in-from-bottom flex flex-col max-h-[70vh]">
             <div className="p-4 border-b border-outline-variant flex justify-between items-center bg-surface-container-low rounded-t-2xl">
               <h2 className="font-headline-sm text-headline-sm text-on-surface">
-                {activeSelector === 'source' ? '번역할 언어 선택' : '도착 언어 선택'}
+                {activeSelector === 'source' ? 'เลือกภาษาต้นทาง' : 'เลือกภาษาปลายทาง'}
               </h2>
               <button 
                 onClick={() => setActiveSelector(null)}

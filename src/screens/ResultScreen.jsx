@@ -81,8 +81,8 @@ export default function ResultScreen() {
 
   // State from navigation
   const imageData = location.state?.imageData;
-  const sourceLang = location.state?.sourceLang || '한국어';
-  const targetLang = location.state?.targetLang || '태국어';
+  const sourceLang = location.state?.sourceLang || 'เกาหลี';
+  const targetLang = location.state?.targetLang || 'ไทย';
 
   // API & Translation state
   const [apiKey, setApiKey] = useState(() => import.meta.env.VITE_GEMINI_API_KEY || '');
@@ -188,7 +188,7 @@ export default function ResultScreen() {
                 <div className="absolute inset-0 border-4 border-t-primary border-r-transparent border-b-transparent border-l-transparent rounded-full animate-spin"></div>
               </div>
               <div className="flex flex-col items-center gap-2">
-                <p className="text-white font-label-md text-label-md">Analyzing image...</p>
+                <p className="text-white font-label-md text-label-md">กำลังวิเคราะห์รูปภาพ...</p>
                 <p className="text-white/60 font-label-sm text-label-sm">Gemini 2.0 Flash</p>
               </div>
             </div>
@@ -203,7 +203,7 @@ export default function ResultScreen() {
                 onClick={handleRetry}
                 className="mt-2 px-6 py-2.5 bg-primary text-on-primary rounded-full font-label-md text-label-md active:scale-95 transition-all"
               >
-                Retry
+                ลองใหม่
               </button>
             </div>
           )}
@@ -252,7 +252,7 @@ export default function ResultScreen() {
             <div className="flex gap-base">
               <button className="flex items-center gap-1 text-primary font-label-md text-label-md hover:opacity-70 active:scale-95 transition-all cursor-pointer">
                 <span className="material-symbols-outlined text-[18px]">volume_up</span>
-                Listen
+                ฟัง
               </button>
             </div>
           </div>
@@ -260,7 +260,7 @@ export default function ResultScreen() {
           {/* Comparison Card */}
           <div className="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden border border-outline-variant/30">
             <div className="p-base border-b border-outline-variant/20">
-              <h3 className="font-label-sm text-label-sm text-outline mb-1 uppercase tracking-wider">Original Text</h3>
+              <h3 className="font-label-sm text-label-sm text-outline mb-1 uppercase tracking-wider">ข้อความต้นฉบับ</h3>
               <div className="max-h-24 overflow-y-auto" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
                 {loading ? (
                   <div className="space-y-2">
@@ -269,13 +269,13 @@ export default function ResultScreen() {
                   </div>
                 ) : (
                   <p className="font-body-md text-body-md text-on-surface italic">
-                    {translationResult?.fullOriginal || (error ? '—' : 'Waiting for analysis...')}
+                    {translationResult?.fullOriginal || (error ? '—' : 'กำลังรอผลวิเคราะห์...')}
                   </p>
                 )}
               </div>
             </div>
             <div className="p-base bg-primary-container/10">
-              <h3 className="font-label-sm text-label-sm text-primary mb-1 uppercase tracking-wider">Translated Text</h3>
+              <h3 className="font-label-sm text-label-sm text-primary mb-1 uppercase tracking-wider">ข้อความที่แปล</h3>
               <div className="max-h-32 overflow-y-auto" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
                 {loading ? (
                   <div className="space-y-2">
@@ -284,7 +284,7 @@ export default function ResultScreen() {
                   </div>
                 ) : (
                   <p className="font-body-md text-body-md text-on-surface">
-                    {translationResult?.fullTranslated || (error ? '—' : 'Waiting for analysis...')}
+                    {translationResult?.fullTranslated || (error ? '—' : 'กำลังรอผลวิเคราะห์...')}
                   </p>
                 )}
               </div>
@@ -298,11 +298,11 @@ export default function ResultScreen() {
               className="flex-1 flex flex-col items-center justify-center gap-1 py-base bg-surface-container-high rounded-xl hover:bg-surface-container-highest transition-colors active:scale-95"
             >
               <span className="material-symbols-outlined text-on-surface-variant">content_copy</span>
-              <span className="font-label-sm text-label-sm text-on-surface-variant">Copy</span>
+              <span className="font-label-sm text-label-sm text-on-surface-variant">คัดลอก</span>
             </button>
             <button className="flex-1 flex flex-col items-center justify-center gap-1 py-base bg-surface-container-high rounded-xl hover:bg-surface-container-highest transition-colors active:scale-95">
               <span className="material-symbols-outlined text-on-surface-variant">share</span>
-              <span className="font-label-sm text-label-sm text-on-surface-variant">Share</span>
+              <span className="font-label-sm text-label-sm text-on-surface-variant">แชร์</span>
             </button>
             <button 
               onClick={handleSave}
@@ -314,7 +314,7 @@ export default function ResultScreen() {
               >
                 {saved ? 'check_circle' : 'bookmark'}
               </span>
-              <span className="font-label-sm text-label-sm">{saved ? 'Saved' : 'Save'}</span>
+              <span className="font-label-sm text-label-sm">{saved ? 'บันทึกแล้ว' : 'บันทึก'}</span>
             </button>
           </div>
         </section>
@@ -333,12 +333,12 @@ export default function ResultScreen() {
                 <span className="material-symbols-outlined text-primary">key</span>
               </div>
               <div>
-                <h2 className="font-headline-sm text-headline-sm text-on-surface">Gemini API Key</h2>
-                <p className="font-label-sm text-label-sm text-on-surface-variant">Required for AI translation</p>
+                <h2 className="font-headline-sm text-headline-sm text-on-surface">คีย์ API Gemini</h2>
+                <p className="font-label-sm text-label-sm text-on-surface-variant">จำเป็นสำหรับการแปลด้วย AI</p>
               </div>
             </div>
             <p className="font-body-sm text-body-sm text-on-surface-variant">
-              Get your free API key from{' '}
+              รับคีย์ API ฟรีจาก{' '}
               <a 
                 href="https://aistudio.google.com/apikey" 
                 target="_blank" 
@@ -353,7 +353,7 @@ export default function ResultScreen() {
                 type="password"
                 value={apiKey}
                 onChange={(e) => setApiKey(e.target.value)}
-                placeholder="Paste your API key here..."
+                placeholder="วางคีย์ API ของคุณที่นี่..."
                 className="w-full h-12 px-4 rounded-xl bg-surface-container border border-outline-variant font-body-md text-on-surface focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none"
                 autoFocus
               />
@@ -362,7 +362,7 @@ export default function ResultScreen() {
                 disabled={!apiKey.trim()}
                 className="w-full h-12 bg-primary text-on-primary rounded-full font-label-md text-label-md active:scale-95 transition-all disabled:opacity-40 disabled:pointer-events-none"
               >
-                Start Translating
+                เริ่มแปล
               </button>
             </form>
           </div>
