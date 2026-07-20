@@ -1,0 +1,6 @@
+{
+  "appId": "com.yoonwoo.chae",
+  "appName": "Chae",
+  "webDir": "dist",
+  "bundledWebRuntime": false
+}

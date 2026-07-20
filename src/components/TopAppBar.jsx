@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function TopAppBar({ title = "LingoLens" }) {
+export default function TopAppBar({ title = "Chae" }) {
   return (
     <header className="w-full top-0 sticky z-[60] bg-surface/80 backdrop-blur-md shadow-sm flex items-center justify-between px-margin-mobile h-14">
       <div className="flex items-center gap-4">

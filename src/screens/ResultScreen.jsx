@@ -156,7 +156,7 @@ export default function ResultScreen() {
           >
             <span className="material-symbols-outlined text-primary">arrow_back</span>
           </button>
-          <h1 className="font-headline-sm text-headline-sm font-bold text-primary">LingoLens</h1>
+          <h1 className="font-headline-sm text-headline-sm font-bold text-primary">Chae</h1>
         </div>
         <div className="flex items-center gap-2">
           <button

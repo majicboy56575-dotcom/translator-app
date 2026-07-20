@@ -32,7 +32,7 @@ export default function OnboardingScreen() {
           <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center text-on-primary shadow-sm">
             <span className="material-symbols-outlined text-[24px]">auto_awesome</span>
           </div>
-          <h1 className="font-headline-sm text-headline-sm font-bold text-primary tracking-tight">LingoLens</h1>
+          <h1 className="font-headline-sm text-headline-sm font-bold text-primary tracking-tight">Chae</h1>
         </div>
       </header>
       
@@ -91,7 +91,7 @@ export default function OnboardingScreen() {
 
         {/* Typography Section */}
         <div className="w-full max-w-sm flex flex-col items-center text-center pb-xl">
-          <h2 className="font-display-lg-mobile text-display-lg-mobile text-on-surface mb-md">เปิดโลกกว้างด้วย LingoLens</h2>
+          <h2 className="font-display-lg-mobile text-display-lg-mobile text-on-surface mb-md">เปิดโลกกว้างด้วย Chae</h2>
           <p className="font-body-md text-body-md text-on-surface-variant px-md">
             แปลข้อความได้ทันทีผ่านเลนส์กล้องของคุณ
           </p>
