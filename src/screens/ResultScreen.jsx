@@ -28,8 +28,8 @@ export default function ResultScreen() {
 
   // State from navigation
   const imageData = location.state?.imageData;
-  const sourceLang = location.state?.sourceLang || 'เกาหลี';
-  const targetLang = location.state?.targetLang || 'ไทย';
+  const sourceLang = location.state?.sourceLang || '한국어';
+  const targetLang = location.state?.targetLang || '태국어';
 
   // API & Translation state
   const [loading, setLoading] = useState(false);
@@ -113,7 +113,7 @@ export default function ResultScreen() {
                 <div className="absolute inset-0 border-4 border-t-primary border-r-transparent border-b-transparent border-l-transparent rounded-full animate-spin"></div>
               </div>
               <div className="flex flex-col items-center gap-2">
-                <p className="text-white font-label-md text-label-md">กำลังวิเคราะห์รูปภาพ...</p>
+                <p className="text-white font-label-md text-label-md">이미지를 분석하는 중...</p>
                 <p className="text-white/60 font-label-sm text-label-sm">Gemini 2.0 Flash</p>
               </div>
             </div>
@@ -128,7 +128,7 @@ export default function ResultScreen() {
                 onClick={handleRetry}
                 className="mt-2 px-6 py-2.5 bg-primary text-on-primary rounded-full font-label-md text-label-md active:scale-95 transition-all"
               >
-                ลองใหม่
+                다시 시도
               </button>
             </div>
           )}
@@ -177,7 +177,7 @@ export default function ResultScreen() {
             <div className="flex gap-base">
               <button className="flex items-center gap-1 text-primary font-label-md text-label-md hover:opacity-70 active:scale-95 transition-all cursor-pointer">
                 <span className="material-symbols-outlined text-[18px]">volume_up</span>
-                ฟัง
+                듣기
               </button>
             </div>
           </div>
@@ -185,7 +185,7 @@ export default function ResultScreen() {
           {/* Comparison Card */}
           <div className="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden border border-outline-variant/30">
             <div className="p-base border-b border-outline-variant/20">
-              <h3 className="font-label-sm text-label-sm text-outline mb-1 uppercase tracking-wider">ข้อความต้นฉบับ</h3>
+              <h3 className="font-label-sm text-label-sm text-outline mb-1 uppercase tracking-wider">원본 텍스트</h3>
               <div className="max-h-24 overflow-y-auto" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
                 {loading ? (
                   <div className="space-y-2">
@@ -194,13 +194,13 @@ export default function ResultScreen() {
                   </div>
                 ) : (
                   <p className="font-body-md text-body-md text-on-surface italic">
-                    {translationResult?.fullOriginal || (error ? '—' : 'กำลังรอผลวิเคราะห์...')}
+                    {translationResult?.fullOriginal || (error ? '—' : '분석 결과를 기다리는 중...')}
                   </p>
                 )}
               </div>
             </div>
             <div className="p-base bg-primary-container/10">
-              <h3 className="font-label-sm text-label-sm text-primary mb-1 uppercase tracking-wider">ข้อความที่แปล</h3>
+              <h3 className="font-label-sm text-label-sm text-primary mb-1 uppercase tracking-wider">번역된 텍스트</h3>
               <div className="max-h-32 overflow-y-auto" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
                 {loading ? (
                   <div className="space-y-2">
@@ -209,7 +209,7 @@ export default function ResultScreen() {
                   </div>
                 ) : (
                   <p className="font-body-md text-body-md text-on-surface">
-                    {translationResult?.fullTranslated || (error ? '—' : 'กำลังรอผลวิเคราะห์...')}
+                    {translationResult?.fullTranslated || (error ? '—' : '분석 결과를 기다리는 중...')}
                   </p>
                 )}
               </div>
@@ -223,11 +223,11 @@ export default function ResultScreen() {
               className="flex-1 flex flex-col items-center justify-center gap-1 py-base bg-surface-container-high rounded-xl hover:bg-surface-container-highest transition-colors active:scale-95"
             >
               <span className="material-symbols-outlined text-on-surface-variant">content_copy</span>
-              <span className="font-label-sm text-label-sm text-on-surface-variant">คัดลอก</span>
+              <span className="font-label-sm text-label-sm text-on-surface-variant">복사</span>
             </button>
             <button className="flex-1 flex flex-col items-center justify-center gap-1 py-base bg-surface-container-high rounded-xl hover:bg-surface-container-highest transition-colors active:scale-95">
               <span className="material-symbols-outlined text-on-surface-variant">share</span>
-              <span className="font-label-sm text-label-sm text-on-surface-variant">แชร์</span>
+              <span className="font-label-sm text-label-sm text-on-surface-variant">공유</span>
             </button>
             <button 
               onClick={handleSave}
@@ -239,7 +239,7 @@ export default function ResultScreen() {
               >
                 {saved ? 'check_circle' : 'bookmark'}
               </span>
-              <span className="font-label-sm text-label-sm">{saved ? 'บันทึกแล้ว' : 'บันทึก'}</span>
+              <span className="font-label-sm text-label-sm">{saved ? '저장됨' : '저장'}</span>
             </button>
           </div>
         </section>
