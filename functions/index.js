@@ -106,3 +106,4 @@ exports.translateImage = onRequest({ cors: true, maxInstances: 10 }, async (req,
     }
   });
 });
+// trigger  
