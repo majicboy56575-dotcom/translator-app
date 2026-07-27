@@ -2,76 +2,23 @@ import React, { useState, useEffect, useCallback } from 'react';
 import BottomNavBar from '../components/BottomNavBar';
 import { useNavigate, useLocation } from 'react-router-dom';
 
-// Gemini API configuration
-const GEMINI_MODEL = 'gemini-3.5-flash';
-const GEMINI_ENDPOINT = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent`;
+// Firebase Backend endpoint
+const BACKEND_ENDPOINT = 'https://us-central1-st-app-8eb83.cloudfunctions.net/translateImage';
 
-function buildTranslationPrompt(sourceLang, targetLang) {
-  return `You are an OCR and translation assistant. Analyze this image and:
-1. Detect all visible text in the image.
-2. Identify the language of the text (it should be ${sourceLang}).
-3. Translate all detected text from ${sourceLang} to ${targetLang}.
-4. Estimate the approximate position of each text block in the image as percentage values (top, left, width).
-
-Return ONLY a valid JSON object in the following format, with no extra text or markdown:
-{
-  "detectedLanguage": "detected language name",
-  "blocks": [
-    {
-      "original": "original text",
-      "translated": "translated text",
-      "position": { "top": 20, "left": 10, "width": 40 }
-    }
-  ],
-  "fullOriginal": "all original text combined",
-  "fullTranslated": "all translated text combined"
-}
-
-If no text is found in the image, return:
-{ "detectedLanguage": "none", "blocks": [], "fullOriginal": "", "fullTranslated": "" }`;
-}
-
-async function callGeminiAPI(apiKey, imageDataUrl, sourceLang, targetLang) {
-  // Extract base64 data and mime type from data URL
-  const match = imageDataUrl.match(/^data:(image\/[a-zA-Z0-9.+-]+);base64,(.+)$/s);
-  if (!match) throw new Error('Invalid image data format. Please capture a photo or select an image from your gallery.');
-  const mimeType = match[1];
-  const base64Data = match[2];
-
-  const response = await fetch(`${GEMINI_ENDPOINT}?key=${apiKey}`, {
+async function callBackendAPI(imageDataUrl, sourceLang, targetLang) {
+  const response = await fetch(BACKEND_ENDPOINT, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      contents: [{
-        parts: [
-          { text: buildTranslationPrompt(sourceLang, targetLang) },
-          { inlineData: { mimeType, data: base64Data } }
-        ]
-      }],
-      generationConfig: {
-        temperature: 0.1,
-        maxOutputTokens: 2048,
-      }
-    })
+    body: JSON.stringify({ imageDataUrl, sourceLang, targetLang })
   });
 
   if (!response.ok) {
     const errorData = await response.json().catch(() => ({}));
-    const errorMsg = errorData?.error?.message || `API Error: ${response.status}`;
+    const errorMsg = errorData?.error || `API Error: ${response.status}`;
     throw new Error(errorMsg);
   }
 
-  const data = await response.json();
-  const textContent = data?.candidates?.[0]?.content?.parts?.[0]?.text;
-  if (!textContent) throw new Error('No response from Gemini API');
-
-  // Parse JSON from response (handle potential markdown code blocks)
-  const jsonStr = textContent.replace(/```json\n?/g, '').replace(/```\n?/g, '').trim();
-  try {
-    return JSON.parse(jsonStr);
-  } catch {
-    throw new Error('Failed to parse Gemini response as JSON');
-  }
+  return response.json();
 }
 
 export default function ResultScreen() {
@@ -85,19 +32,17 @@ export default function ResultScreen() {
   const targetLang = location.state?.targetLang || 'ไทย';
 
   // API & Translation state
-  const [apiKey, setApiKey] = useState(() => import.meta.env.VITE_GEMINI_API_KEY || '');
-  const [showApiKeyModal, setShowApiKeyModal] = useState(false);
   const [loading, setLoading] = useState(false);
   const [translationResult, setTranslationResult] = useState(null);
   const [error, setError] = useState(null);
 
-  const performTranslation = useCallback(async (key) => {
-    if (!imageData || !key) return;
+  const performTranslation = useCallback(async () => {
+    if (!imageData) return;
     setLoading(true);
     setError(null);
     setTranslationResult(null);
     try {
-      const result = await callGeminiAPI(key, imageData, sourceLang, targetLang);
+      const result = await callBackendAPI(imageData, sourceLang, targetLang);
       setTranslationResult(result);
     } catch (err) {
       setError(err.message);
@@ -106,29 +51,15 @@ export default function ResultScreen() {
     }
   }, [imageData, sourceLang, targetLang]);
 
-  // Auto-trigger translation if API key is available
+  // Auto-trigger translation
   useEffect(() => {
-    if (imageData && apiKey) {
-      performTranslation(apiKey);
-    } else if (imageData && !apiKey) {
-      setShowApiKeyModal(true);
+    if (imageData) {
+      performTranslation();
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const handleApiKeySubmit = (e) => {
-    e.preventDefault();
-    const key = apiKey.trim();
-    if (!key) return;
-    setShowApiKeyModal(false);
-    performTranslation(key);
-  };
-
   const handleRetry = () => {
-    if (apiKey) {
-      performTranslation(apiKey);
-    } else {
-      setShowApiKeyModal(true);
-    }
+    performTranslation();
   };
 
   const handleSave = () => {
@@ -159,13 +90,7 @@ export default function ResultScreen() {
           <h1 className="font-headline-sm text-headline-sm font-bold text-primary">Chae</h1>
         </div>
         <div className="flex items-center gap-2">
-          <button
-            onClick={() => setShowApiKeyModal(true)}
-            className="w-9 h-9 rounded-full bg-surface-container-high flex items-center justify-center hover:opacity-80 active:scale-95 transition-all"
-            title="API Key Settings"
-          >
-            <span className="material-symbols-outlined text-on-surface-variant text-[20px]">key</span>
-          </button>
+          {/* API Key Modal Button Removed */}
         </div>
       </header>
 
@@ -320,54 +245,7 @@ export default function ResultScreen() {
         </section>
       </main>
 
-      {/* API Key Modal */}
-      {showApiKeyModal && (
-        <>
-          <div 
-            className="fixed inset-0 bg-black/50 z-[110] backdrop-blur-sm"
-            onClick={() => setShowApiKeyModal(false)}
-          ></div>
-          <div className="fixed inset-x-4 top-1/2 -translate-y-1/2 bg-surface z-[120] rounded-2xl shadow-2xl p-6 flex flex-col gap-4 max-w-md mx-auto">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-primary-container flex items-center justify-center">
-                <span className="material-symbols-outlined text-primary">key</span>
-              </div>
-              <div>
-                <h2 className="font-headline-sm text-headline-sm text-on-surface">คีย์ API Gemini</h2>
-                <p className="font-label-sm text-label-sm text-on-surface-variant">จำเป็นสำหรับการแปลด้วย AI</p>
-              </div>
-            </div>
-            <p className="font-body-sm text-body-sm text-on-surface-variant">
-              รับคีย์ API ฟรีจาก{' '}
-              <a 
-                href="https://aistudio.google.com/apikey" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-primary underline"
-              >
-                Google AI Studio
-              </a>
-            </p>
-            <form onSubmit={handleApiKeySubmit} className="flex flex-col gap-3">
-              <input
-                type="password"
-                value={apiKey}
-                onChange={(e) => setApiKey(e.target.value)}
-                placeholder="วางคีย์ API ของคุณที่นี่..."
-                className="w-full h-12 px-4 rounded-xl bg-surface-container border border-outline-variant font-body-md text-on-surface focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none"
-                autoFocus
-              />
-              <button
-                type="submit"
-                disabled={!apiKey.trim()}
-                className="w-full h-12 bg-primary text-on-primary rounded-full font-label-md text-label-md active:scale-95 transition-all disabled:opacity-40 disabled:pointer-events-none"
-              >
-                เริ่มแปล
-              </button>
-            </form>
-          </div>
-        </>
-      )}
+      {/* API Key Modal Removed */}
 
       <BottomNavBar />
     </div>
